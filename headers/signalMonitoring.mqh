@@ -53,15 +53,27 @@ void monitorSellEntry(double nextCandleTenkan, int i)
                     double previousCandleKijun = iIchimokuMQL4(NULL, PERIOD_CURRENT, 9, 26, 52, 1, i + 1);
                     double previousCandleKijun2 = iIchimokuMQL4(NULL, PERIOD_CURRENT, 9, 26, 52, 1, i + 2);
                     double previousCandleTenkan = iIchimokuMQL4(NULL, PERIOD_CURRENT, 9, 26, 52, 0, i + 1);
-                    int flatIndex = iBarShift(NULL,PERIOD_CURRENT,lastFlatTime);
+                    int flatIndex = iBarShift(NULL, PERIOD_CURRENT, lastFlatTime);
                     double kijunAtFlatIndex = iIchimokuMQL4(NULL, PERIOD_CURRENT, 9, 26, 52, 1, flatIndex);
+                    double kijunAtFlatIndex_2 = iIchimokuMQL4(NULL, PERIOD_CURRENT, 9, 26, 52, 1, flatIndex + 2);
+                    // drawSegmentHLine("flat2"+flatIndex, kijunAtFlatIndex_2, flatIndex + 1, flatIndex);
 
                     if (signalMode == Aggressiv)
                     {
                         if (
-                            
-                            MA[i] > nextCandleTenkan
-                            
+                            //
+                            previousCandleTenkan > previousCandleKijun
+                            //
+                            && nextCandleKijun == lastFlatPrice
+                            //
+                            && kijunAtFlatIndex == lastFlatPrice
+                            //
+                            && kijunAtFlatIndex_2 == lastFlatPrice
+                            //
+                            && MA[i] > nextCandleTenkan
+                            //
+                            && MA[i+1] > MA[i]
+
                             ) // cross
                         {
                             triangleFound = true;
@@ -107,7 +119,10 @@ void monitorSellEntry(double nextCandleTenkan, int i)
                             && nextCandleKijun == lastFlatPrice
                             //
                             && kijunAtFlatIndex == lastFlatPrice
-                        )
+                            //
+                            && kijunAtFlatIndex_2 == lastFlatPrice
+                            //
+                            )
                         {
                             triangleFound = true;
 
