@@ -40,6 +40,9 @@ bool DetectFlatTenkan(double &price, int j)
 
         lastFlatIndex = j;
 
+        // save candle time
+        lastFlatTime = iTime(NULL,0,j);
+
         lastFlatPrice = price;
 
         flatTenkanFound = true;

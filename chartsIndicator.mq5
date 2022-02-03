@@ -92,6 +92,7 @@ double nextCandleGreaterThanFlatPrice = 0;
 bool tenkanSmallerThanFlat = false;
 bool tenkanCandleComingToFlat = false;
 double tenkanCandleComingToFlatPrice = 0;
+datetime lastFlatTime = NULL;
 bool triangleFound = false;
 bool revengeSignal = true;
 

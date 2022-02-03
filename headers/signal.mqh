@@ -134,7 +134,7 @@ int OnCalcSignal(int rates_total, int prev_calculated)
     //--- main loop
     for (int i = limit - 1; i >= 0; i--)
     {
-        if (i >= MathMin(5000 - 1, rates_total - 1 - 50))
+        if (i >= MathMin(100000 - 1, rates_total - 1 - 50))
             continue; // omit some old rates to prevent "Array out of range" or slow calculation
 
         double nextCandleTenkan = iIchimokuMQL4(NULL, PERIOD_CURRENT, 9, 26, 52, 0, i + 1);
